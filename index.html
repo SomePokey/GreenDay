@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Get the Green Day treatment</title>
+  <style>
+    body {
+      background-color: #0c0c0c;
+      color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 2em;
+    }
+    .lyrics {
+      margin-top: 2em;
+      font-size: 1em;
+      white-space: pre-wrap;
+      line-height: 1.5;
+      max-width: 800px;
+      margin: auto;
+    }
+    audio {
+      margin-top: 2em;
+      width: 80%;
+    }
+    footer {
+      margin-top: 4em;
+      font-size: 1.2em;
+      color: #ff4444;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Get the Green Day treatment</h1>
+  <h2 id="song-title"></h2>
+  <audio id="player" controls></audio>
+  <div class="lyrics" id="lyrics"></div>
+  <footer>
+    MAGA supporters are either fucked up in the mind or want to see what Nazi Germany was like.
+  </footer>
+
+  <script>
+    const songs = [
+      {
+        title: "American Idiot",
+        file: "audio/AmericanIdiot.mp3",
+        lyrics: `Don't wanna be an American idiot
+Don't want a nation under the new media
+And can you hear the sound of hysteria?
+The subliminal mind fuck America`
+      },
+      {
+        title: "The American Dream Is Killing Me",
+        file: "audio/AmericanDream.mp3",
+        lyrics: `The American Dream is killing me
+The American Dream is killing me
+When it's all double talk of conspiracy
+The American Dream is killing me`
+      },
+      {
+        title: "Know Your Enemy",
+        file: "audio/KnowYourEnemy.mp3",
+        lyrics: `Do you know the enemy?
+Do you know your enemy?
+Well, gotta know the enemy, rah-eh`
+      },
+      {
+        title: "Fuck Off",
+        file: "audio/FuckOff.mp3",
+        lyrics: `Fuck off, fuck off
+Just F-U-C-K-O-F-F, fuck off!`
+      }
+    ];
+
+    const song = songs[Math.floor(Math.random() * songs.length)];
+    const audio = document.getElementById("player");
+    document.getElementById("song-title").textContent = song.title;
+    document.getElementById("lyrics").textContent = song.lyrics;
+    audio.src = song.file;
+
+    // Try autoplay, fallback silently
+    window.addEventListener('load', () => {
+      audio.play().catch(() => {
+        // Autoplay blocked — do nothing, just let user press play
+        console.warn('Autoplay was blocked by the browser.');
+      });
+    });
+  </script>
+</body>
+</html>
